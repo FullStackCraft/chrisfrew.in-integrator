@@ -87,9 +87,7 @@ const verifySignature = (req) => {
 const determineWebhook = (oData) => {
   let sStatus;
   if (oData.sender) { // GitHub
-    console.log(oData.head_commit);
-    console.log(oData.head_commit);
-    
+    console.log(oData.head_commit.added.length);
     sStatus = "New head commit in " + oData.repository.name + " (Link: " + oData.repository.url + ") Commiter user was: " + oData.pusher.name;
     if (oData.head_commit.added)  {
       sStatus = sStatus + " added " + oData.head_commit.added.length + " files, ";
@@ -101,6 +99,7 @@ const determineWebhook = (oData) => {
       sStatus = sStatus +  " removed " + oData.head_commit.removed.length + " files.";
     }
    console.log(sStatus);
+   console.log(oAppInfo[oData.repository.name]);
    pull(oAppInfo[oData.repository.name]);
     //twitterBotUtils.postStatus(sStatus);
   } else if (oData.actor) { // Bitbucket
