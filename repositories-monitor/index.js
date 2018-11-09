@@ -86,26 +86,27 @@ const verifySignature = (req) => {
 
 const determineWebhook = (oData) => {
   let sStatus;
-  if (oData.sender) { // GitHub
-    sStatus = "New head commit in " + oData.repository.name + " (Link: " + oData.repository.url + ") Commiter user was: " + oData.pusher.name + " who ";
-    if (oData.head_commit.added)  {
-      sStatus = sStatus + " added " + oData.head_commit.added.length + " files, ";
+  if (oData) {
+    if (oData.sender) { // GitHub
+      sStatus = "New head commit in " + oData.repository.name + " (Link: " + oData.repository.url + ") Commiter user was: " + oData.pusher.name + " who ";
+      if (oData.head_commit.added)  {
+        sStatus = sStatus + " added " + oData.head_commit.added.length + " files, ";
+      }
+      if (oData.head_commit.modified)  {
+        sStatus = sStatus +  " modified " + oData.head_commit.modified.length + " files, and";
+      }
+      if (oData.head_commit.removed) {
+        sStatus = sStatus +  " removed " + oData.head_commit.removed.length + " files.";
+      }
+     pull(oAppInfo[oData.repository.name]);
+      //twitterBotUtils.postStatus(sStatus);
+    } else if (oData.actor) { // Bitbucket
+      
+      //twitterBotUtils.postStatus(sStatus);
+    } else { // some other webhook (there are no others yet, but this space is here when they come later)
+      
     }
-    if (oData.head_commit.modified)  {
-      sStatus = sStatus +  " modified " + oData.head_commit.modified.length + " files, and";
-    }
-    if (oData.head_commit.removed) {
-      sStatus = sStatus +  " removed " + oData.head_commit.removed.length + " files.";
-    }
-   pull(oAppInfo[oData.repository.name]);
-    //twitterBotUtils.postStatus(sStatus);
-  } else if (oData.actor) { // Bitbucket
-    
-    //twitterBotUtils.postStatus(sStatus);
-  } else { // some other webhook (there are no others yet, but this space is here when they come later)
-    
   }
-
 };
 const pull = (oAppInfo) => {
   if (oAppInfo.repositoryType === BITBUCKET) {
