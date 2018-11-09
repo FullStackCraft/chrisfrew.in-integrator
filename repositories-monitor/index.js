@@ -116,7 +116,7 @@ const pull = (oAppInfo) => {
   if (oAppInfo.repositoryType === GITHUB) {
     messageHub("Repository is a GitHub repository.. Attempting to pull...");
     git.cwd(oAppInfo.projectRelativeDirectory).pull((err, update) => {
-       if(update && update.summary.changes) { // there is indeed an update found on the remote
+       if(update && update.PullSummary.changes) { // there were indeed changes
           build(oAppInfo);
        } else if (err) {
          if (err.includes("commit your changes or stash them")) {
@@ -134,10 +134,10 @@ const stashAndPull = (sRootRepositoryDirectory) => {
       pull(sRootRepositoryDirectory);
     });
 }
-const build = () => {
+const build = (oAppInfo) => {
   if (oAppInfo.appType === CREATE_REACT_APP) {
     messageHub("This is an app templated by create-react-app; Issuing 'npm run build' to build new source...");
-    exec('npm run build', { cwd: '../charge-keyboard.com' }, function(err, stdout, stderr) {
+    exec('npm run build', { cwd: oAppInfo.projectRelativeDirectory }, function(err, stdout, stderr) {
        if (err) {
          messageHub(err);
        } else if (stderr) {
