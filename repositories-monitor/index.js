@@ -114,10 +114,10 @@ const pull = (oAppInfo) => {
     messageHub("Repository is a Bitbucket repository.. Attempting to pull with credentials...");
   }
   if (oAppInfo.repositoryType === GITHUB) {
-    messageHub("Repository is a GitHub repository.. Attempting to pull...");
+    messageHub("Repository is a GitHub repository... Attempting to pull...");
     git.cwd(oAppInfo.projectRelativeDirectory).pull((err, update) => {
       console.log(update);
-       if(update && update.PullSummary.summary.changes) { // there were indeed changes
+       if(update && update.summary.changes) { // there were indeed changes
           build(oAppInfo);
        } else if (err) {
          if (err.includes("commit your changes or stash them")) {
