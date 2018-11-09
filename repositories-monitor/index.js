@@ -46,22 +46,22 @@ if (process.env.NODE_ENV !== 'production') {
 const iPort = chrisfrewinProductionsConfig.aPeripherals.filter((oPeripheral) => oPeripheral.sName === chrisfrewinProductionsConfig.REPOSITORIES_MONITOR)[0].iPort;
 const oAppInfo = {
   "charge-keyboard-splash-page": {
-    "projectRelativeDirectory": "../../charge-keyboard.com", 
+    "projectRelativeDirectory": "../charge-keyboard.com", 
     "appType": CREATE_REACT_APP,
     "repositoryType": BITBUCKET
   },
   "chrisfrew.in-integrator": {
-    "projectRelativeDirectory": "../", 
+    "projectRelativeDirectory": "", 
     "appType": NODE,
     "repositoryType": GITHUB
   },
   "nlp-champs.com": {
-    "projectRelativeDirectory": "../../nlp-champs.com", 
+    "projectRelativeDirectory": "../nlp-champs.com", 
     "appType": CREATE_REACT_APP,
     "repositoryType": BITBUCKET
   },
   "chrisfrew.in": {
-    "projectRelativeDirectory": "../../chrisfrew.in", 
+    "projectRelativeDirectory": "../chrisfrew.in", 
     "appType": CREATE_REACT_APP,
     "repositoryType": GITHUB
   } // super meta - will restart itself
