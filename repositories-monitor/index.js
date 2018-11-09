@@ -47,25 +47,25 @@ const iPort = chrisfrewinProductionsConfig.aPeripherals.filter((oPeripheral) => 
 const oAppInfo = {
   "charge-keyboard-splash-page": {
     "projectRelativeDirectory": "../charge-keyboard.com",
-    "projectGlobalDirectory": ""
+    "projectGlobalDirectory": "",
     "appType": CREATE_REACT_APP,
     "repositoryType": BITBUCKET
   },
   "chrisfrew.in-integrator": {
     "projectRelativeDirectory": "",
-    "projectGlobalDirectory": ""
+    "projectGlobalDirectory": "",
     "appType": NODE_JS,
     "repositoryType": GITHUB
   },
   "nlp-champs.com": {
     "projectRelativeDirectory": "../nlp-champs.com",
-    "projectGlobalDirectory": ""
+    "projectGlobalDirectory": "",
     "appType": CREATE_REACT_APP,
     "repositoryType": BITBUCKET
   },
   "chrisfrew.in": {
     "projectRelativeDirectory": "../chrisfrew.in",
-    "projectGlobalDirectory": "/root/projects/chrisfrew.in"
+    "projectGlobalDirectory": "/root/projects/chrisfrew.in",
     "appType": CREATE_REACT_APP,
     "repositoryType": GITHUB
   } // super meta - will restart itself
