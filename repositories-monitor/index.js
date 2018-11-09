@@ -116,6 +116,7 @@ const pull = (oAppInfo) => {
   if (oAppInfo.repositoryType === GITHUB) {
     messageHub("Repository is a GitHub repository.. Attempting to pull...");
     git.cwd(oAppInfo.projectRelativeDirectory).pull((err, update) => {
+      console.log(update);
        if(update && update.PullSummary.changes) { // there were indeed changes
           build(oAppInfo);
        } else if (err) {
