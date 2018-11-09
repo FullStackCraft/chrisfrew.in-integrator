@@ -4,7 +4,8 @@
   "description": "A monitor for the Chrisfrew.in Productions application suite.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "integrator-dev": "NODE_ENV=development node index.js",
+    "integrator-prod": "NODE_ENV=production node index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,9 @@
   "homepage": "https://github.com/frewinchristopher/chrisfrew.in-productions-monitor#readme",
   "dependencies": {
     "node-schedule": "^1.3.0",
-    "nodemailer": "^4.6.4"
+    "nodemailer": "^4.6.4",
+    "request": "^2.88.0",
+    "simple-git": "^1.107.0",
+    "winston": "^3.1.0"
   }
 }
