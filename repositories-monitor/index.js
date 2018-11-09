@@ -87,6 +87,7 @@ const verifySignature = (req) => {
 const determineWebhook = (oData) => {
   let sStatus;
   if (oData.sender) { // GitHub
+    console.log(oData);
     sStatus = "New head commit in " + oData.repository.name + " (" + oData.repository.url + "): " + oData.head_commit.committer.name;
     if (oData.head_commit.added)  {
       sStatus = sStatus + " added " + oData.head_commit.added.length + " files, ";
