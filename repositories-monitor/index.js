@@ -15,7 +15,7 @@ const winston = require('winston');
 
 // string constants
 const CREATE_REACT_APP = "CREATE_REACT_APP";
-const NODE = "NODE";
+const NODE_JS = "NODE_JS";
 const GITHUB = "GITHUB";
 const BITBUCKET = "BITBUCKET";
 
@@ -46,22 +46,26 @@ if (process.env.NODE_ENV !== 'production') {
 const iPort = chrisfrewinProductionsConfig.aPeripherals.filter((oPeripheral) => oPeripheral.sName === chrisfrewinProductionsConfig.REPOSITORIES_MONITOR)[0].iPort;
 const oAppInfo = {
   "charge-keyboard-splash-page": {
-    "projectRelativeDirectory": "../charge-keyboard.com", 
+    "projectRelativeDirectory": "../charge-keyboard.com",
+    "projectGlobalDirectory": ""
     "appType": CREATE_REACT_APP,
     "repositoryType": BITBUCKET
   },
   "chrisfrew.in-integrator": {
-    "projectRelativeDirectory": "", 
-    "appType": NODE,
+    "projectRelativeDirectory": "",
+    "projectGlobalDirectory": ""
+    "appType": NODE_JS,
     "repositoryType": GITHUB
   },
   "nlp-champs.com": {
-    "projectRelativeDirectory": "../nlp-champs.com", 
+    "projectRelativeDirectory": "../nlp-champs.com",
+    "projectGlobalDirectory": ""
     "appType": CREATE_REACT_APP,
     "repositoryType": BITBUCKET
   },
   "chrisfrew.in": {
-    "projectRelativeDirectory": "../chrisfrew.in", 
+    "projectRelativeDirectory": "../chrisfrew.in",
+    "projectGlobalDirectory": "/root/projects/chrisfrew.in"
     "appType": CREATE_REACT_APP,
     "repositoryType": GITHUB
   } // super meta - will restart itself
@@ -136,9 +140,9 @@ const stashAndPull = (sRootRepositoryDirectory) => {
     });
 }
 const build = (oAppInfo) => {
-  if (oAppInfo.appType === CREATE_REACT_APP) {
-    messageHub("This is an app templated by create-react-app; Issuing 'npm run build' to build new source...");
-    exec('npm run build', { cwd: oAppInfo.projectRelativeDirectory }, function(err, stdout, stderr) {
+  if (oAppInfo.appType === GATSBY_JS) {
+    messageHub("This is an app templated by GatsbyJS; Issuing 'npm run build' to build new source...");
+    exec('npm run build', { cwd: oAppInfo.projectGlobalDirectory }, function(err, stdout, stderr) {
        if (err) {
          messageHub(err);
        } else if (stderr) {
@@ -148,9 +152,21 @@ const build = (oAppInfo) => {
        }
      });
    }
-   if (oAppInfo.appType === CREATE_REACT_APP) {
-     messageHub("This is a simple node app; Issuing 'npm install' to install any new modules...");
-     exec('npm run build', { cwd: '../charge-keyboard.com' }, function(err, stdout, stderr) {
+  if (oAppInfo.appType === CREATE_REACT_APP) {
+    messageHub("This is an app templated by create-react-app; Issuing 'npm run build' to build new source...");
+    exec('npm run build', { cwd: oAppInfo.projectGlobalDirectory }, function(err, stdout, stderr) {
+       if (err) {
+         messageHub(err);
+       } else if (stderr) {
+         messageHub(stderr);
+       } else {
+         messageHub("Build completed successfully. The site should be live with the newly commited changes incorporated.");
+       }
+     });
+   }
+   if (oAppInfo.appType === NODE_JS) {
+     messageHub("This is a simple NodeJS app; Issuing 'npm install' to install any new modules...");
+     exec('npm run build', { cwd: oAppInfo.projectGlobalDirectory }, function(err, stdout, stderr) {
         if (err) {
           messageHub(err);
         } else if (stderr) {
