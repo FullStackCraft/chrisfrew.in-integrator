@@ -16,6 +16,7 @@ const winston = require('winston');
 // string constants
 const CREATE_REACT_APP = "CREATE_REACT_APP";
 const NODE_JS = "NODE_JS";
+const GATSBY_JS = "GATSBY_JS";
 const GITHUB = "GITHUB";
 const BITBUCKET = "BITBUCKET";
 
@@ -66,7 +67,7 @@ const oAppInfo = {
   "chrisfrew.in": {
     "projectRelativeDirectory": "../chrisfrew.in",
     "projectGlobalDirectory": "/root/projects/chrisfrew.in",
-    "appType": CREATE_REACT_APP,
+    "appType": GATSBY_JS,
     "repositoryType": GITHUB
   } // super meta - will restart itself
 };
